@@ -19,8 +19,8 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
-    bool readyToJump;
-    bool doubleJump;
+    //bool readyToJump;
+    //bool doubleJump;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -63,9 +63,9 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-        readyToJump = true;
+        //readyToJump = true;
         isRunning = false;
-        doubleJump = false;
+        //doubleJump = false;
     }
 
     
@@ -251,7 +251,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ResetJump()
     {
-        readyToJump = true;
+        //readyToJump = true;
 
         exitingSlope = false;
     }
@@ -302,9 +302,4 @@ public class PlayerMovement : MonoBehaviour
     {
         
     }
-
-    public Coroutine wallrunCoroutine;
-    public Coroutine grappleCoroutine;
-    public Coroutine swingCoroutine;
-    public Coroutine dashCoroutine;
 }
