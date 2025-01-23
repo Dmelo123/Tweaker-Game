@@ -83,14 +83,9 @@ public class PlayerMovement : MonoBehaviour
         grounded = Physics.SphereCast(transform.position + Vector3.up * 5, 3, Vector3.down, out hit, playerHeight, whatIsGround);
 
         //handles drag per ground check
-        if (grounded)
-        {
-            rb.drag = groundDrag;
-        }
-        else
-        {
-            rb.drag = 0;
-        }
+        
+        rb.drag = groundDrag;
+        
 
         Vector3 lolVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         //playerAnimation.SetFloat("move_speed", lolVelocity.magnitude);
@@ -100,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
         //    playerAnimation.SetTrigger("test_trigger");
         //    //PlayAnimation();
         //}
-
+        
 
     }
 
@@ -140,9 +135,9 @@ public class PlayerMovement : MonoBehaviour
         // Mode - Freeze
         if (freeze)
         {
-            state = MovementState.freeze;
-            desiredMoveSpeed = 0;
-            rb.velocity = Vector3.zero;
+            //state = MovementState.freeze;
+            //desiredMoveSpeed = 0;
+            //rb.velocity = Vector3.zero;
         }
         
         // Mode - Running
@@ -160,7 +155,7 @@ public class PlayerMovement : MonoBehaviour
         
         else
         {
-            state = MovementState.air;
+            state = MovementState.walking;
 
             if (desiredMoveSpeed < runSpeed)
             {
@@ -302,4 +297,19 @@ public class PlayerMovement : MonoBehaviour
     {
         
     }
+
+    public void FreezePlayer()
+    {
+        freeze = true;
+        rb.constraints = RigidbodyConstraints.FreezePosition;
+    }
+
+    public void UnfreezePlayer()
+    {
+        freeze = false;
+        rb.constraints = RigidbodyConstraints.None;
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        state = MovementState.walking;
+    }
+
 }
